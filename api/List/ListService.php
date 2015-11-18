@@ -3,6 +3,7 @@ class TaskService {
     
     public static function listTasks() {
         $db = ConnectionFactory::getDB();
+        
         $guests =  array();
         
         foreach($db->guests() as $guests) {
