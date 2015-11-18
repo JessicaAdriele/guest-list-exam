@@ -36,7 +36,7 @@ REQUEST Body
 
 RESPONSE 200 OK 
 {
-  "name": "This is a test",
+  "name": "Thiis is a test",
   "email": "test@gmail.com",
   "id": "1"
 }
@@ -47,18 +47,32 @@ $app->post('/guests/', function() use ( $app ) {
     if($newTask) {
         $guests = TaskService::add($newTask);
         echo json_encode($guests);
-        //echo "{$guests['id']},{$guests['name']}, {$guests['email']}";
     }
     else {
         $app->response->setStatus(400);
         echo "Malformat JSON";
     }
 });
+/*
+HTTP DELETE /api/guests/:id
+RESPONSE 200 OK 
+{
+  "status": "true",
+  "message": "Guest deleted!"
+}
 
-
+HTTP DELETE /api/guests/x
+RESPONSE 404 NOT FOUND 
+{
+  "status": "false",
+  "message": "Guest with x does not exit"
+  
+}
+*/
 $app->delete('/guests/:id', function($id) use ( $app ) {
     if(TaskService::delete($id)) {
-      echo "Task with id = $id was deleted";
+      echo json_encode($guests);
+      //  echo "Task {$task['description']} added";
     }
     else {
       $app->response->setStatus('404');
